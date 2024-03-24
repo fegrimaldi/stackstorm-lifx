@@ -1,0 +1,6 @@
+---
+name: "set_theatre"
+runner_type: "python-script"
+description: "Sets the media room to theatre mode."
+enabled: true
+entry_point: "set_theatre.py"
