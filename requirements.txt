@@ -1,1 +1,2 @@
 setuptools
+lifxlan == 1.2.7
