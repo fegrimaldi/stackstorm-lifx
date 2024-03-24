@@ -16,6 +16,6 @@ from lib import action
 
 class SetEveningAction(action.BaseAction):
     def run(self):
-        self.lights.media_room.set_color(self.color.evening)
-        self.lights.media_room.set_brightness(self.brightness.half)
+        self.lights.media_room.set_color(self.color.evening, 2000)
+        self.lights.media_room.set_brightness(self.brightness.half, 2000)
         return None

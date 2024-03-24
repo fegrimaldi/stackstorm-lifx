@@ -16,6 +16,6 @@ from lib import action
 
 class SetTheatreAction(action.BaseAction):
     def run(self):
-        self.lights.media_room.set_color(self.color.theatre)
-        self.lights.media_room.set_brightness(self.brightness.third)
+        self.lights.media_room.set_color(self.color.theatre, 2000)
+        self.lights.media_room.set_brightness(self.brightness.third, 2000)
         return None
