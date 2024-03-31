@@ -1,1 +1,6 @@
 setuptools
+ifaddr
+bitstring
+bitarray
+lifxlan @ git+https://github.com/mclarkk/lifxlan.git
+
