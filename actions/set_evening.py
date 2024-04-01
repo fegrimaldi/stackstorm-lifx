@@ -31,6 +31,15 @@ class SetEveningAction(action.BaseAction):
             None: The function does not return any value.
         """
         self.lights.media_room.set_color(self.color.evening, 2000)
-        self.lights.media_room.set_brightness(self.brightness.half, 2000)
+        self.lights.media_room.set_brightness(self.brightness.two_thirds, 2000)
+
+        self.lights.office_one.set_color(self.color.evening, 2000)
+        self.lights.office_one.set_brightness(self.brightness.two_thirds, 2000)
+
+        self.lights.office_two.set_color(self.color.evening, 2000)
+        self.lights.office_two.set_brightness(self.brightness.two_thirds, 2000)
+
+        self.lights.office_three.set_color(self.color.evening, 2000)
+        self.lights.office_three.set_brightness(self.brightness.two_thirds, 2000)                        
         return None
 
