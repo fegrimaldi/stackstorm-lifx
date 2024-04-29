@@ -21,13 +21,13 @@ Example:
 
     class HomeLights:
         def __init__(self):
-            self.media_room = Light("d0:73:d5:27:20:7b", "172.16.1.104")
-            self.bedroom = Light("d0:73:d5:21:a2:db", "172.16.1.90")
+            self.media_room = Light("d0:73:d5:27:20:7b", "192.168.2.104")
+            self.bedroom = Light("d0:73:d5:21:a2:db", "192.168.2.90")
             self.living_room_left = Light("d0:73:d5:72:0d:d7", "172.168.1.91")
             self.living_room_right = Light("d0:73:d5:71:b9:2c", "172.168.1.143")
-            self.office_one = Light("d0:73:d5:71:66:d1", "172.16.1.141")
-            self.office_two = Light("d0:73:d5:5a:84:7e", "172.16.1.163")
-            self.office_three = Light("d0:73:d5:71:ac:f1", "172.16.1.153")
+            self.office_one = Light("d0:73:d5:71:66:d1", "192.168.2.141")
+            self.office_two = Light("d0:73:d5:5a:84:7e", "192.168.2.163")
+            self.office_three = Light("d0:73:d5:71:ac:f1", "192.168.2.153")
 
 Attributes:
     None
@@ -53,10 +53,10 @@ class Colors:
 class HomeLights:
     """Defines LIFX lights for various rooms in a home."""
     def __init__(self):
-        self.media_room = Light("d0:73:d5:27:20:7b", "172.16.1.104")
-        self.bedroom = Light("d0:73:d5:21:a2:db", "172.16.1.90")
-        self.living_room_left = Light("d0:73:d5:72:0d:d7", "172.168.1.91")
-        self.living_room_right = Light("d0:73:d5:71:b9:2c", "172.168.1.143")
-        self.office_one = Light("d0:73:d5:71:66:d1", "172.16.1.141")
-        self.office_two = Light("d0:73:d5:5a:84:7e", "172.16.1.163")
-        self.office_three = Light("d0:73:d5:71:ac:f1", "172.16.1.153")
+        self.media_room = Light("d0:73:d5:27:20:7b", "192.168.2.194")
+        self.bedroom = Light("d0:73:d5:21:a2:db", "192.168.2.130")
+        self.living_room_left = Light("d0:73:d5:72:0d:d7", "192.168.2.66")
+        self.living_room_right = Light("d0:73:d5:71:b9:2c", "192.168.2.128")
+        self.office_one = Light("d0:73:d5:71:66:d1", "192.168.2.171")
+        self.office_two = Light("d0:73:d5:5a:84:7e", "192.168.2.148")
+        self.office_three = Light("d0:73:d5:71:ac:f1", "192.168.2.133")
