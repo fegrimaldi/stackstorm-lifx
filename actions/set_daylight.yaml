@@ -1,0 +1,6 @@
+---
+name: "set_daylight"
+runner_type: "python-script"
+description: "Sets the home to the daylight scene."
+enabled: true
+entry_point: "set_daylight.py"
