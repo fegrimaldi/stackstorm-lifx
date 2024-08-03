@@ -22,4 +22,17 @@ rooms:
     lights:
       - "living_room_left"
       - "living_room_right"
+scenes:
+  daylight:
+    color: "(0, 0, 65535, 6000)"
+    brightness: 100
+  evening:
+    color: "(5461, 48495, 65535, 2700)"
+    brightness: 66
+  night:
+    color: "(5461, 48495, 65535, 2700)"
+    brightness: 33
+  theatre:
+    color:  "(0, 65535, 43973, 2500)"
+    brightness: 33
 

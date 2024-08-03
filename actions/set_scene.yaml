@@ -13,5 +13,17 @@ parameters:
   scene:
     description: "Scene to set."
     type: "string"
-    required: true
+    required: false
     position: 1
+  color:
+    description: "HSBK Color Value, i.e. (0, 0, 65535, 4000) or (hue, saturation, brightnees, temperature (K))." 
+    type: "string"
+    required: false
+    position: 2
+  brightness:
+    description: "Light brightness as a percent (0-100)%."
+    type: "integer"
+    required: false
+    minimum: 0
+    maximum: 100
+    position: 3

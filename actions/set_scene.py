@@ -23,13 +23,31 @@ class SetScene(action.BaseAction):
         rooms = paramaters.get("rooms", [])
         scene = paramaters.get("scene", None)
         self.scene = self.scenes.get(scene, None)
-        self.logger.debug(f"Scene: {self.scene}")
+
+
+        if self.scene is None:
+            self.logger.info(f"Scene {scene} not found. Using color and brightness input.")
+            self.color = paramaters["color"]
+            self.brightness = paramaters["brightness"]
+        else:
+            self.logger.info(f"Scene {scene} found. Using defined color and brightness settings.")
+            self.color = self.scene["color"]
+            self.brightness = self.scene["brightness"]
+
+        # Check to make sure we have a valid color and brightness
+        # If a scene name is provided, we don't need a color or brightness
+
+        if not self.color or not self.brightness:
+            self.logger.error("A valid scene name or color and brightness combo are required for setting a scene.")
+            sys.exit(1)
       
         # * convert the brightness as a percentage to a range of 16 bit values (0-65535)
-        if self.scene["brightness"] < 0 or self.scene["brightness"] > 100:
+        if self.brightness < 0 or self.brightness > 100:
             raise ValueError("Brightness must be between 0 and 100%")
-        self.brightness = int((self.scene["brightness"] / 100) * 65535)
+        self.brightness = int((self.brightness / 100) * 65535)
     
+        # * set the lights in each room to the desired scene
+        self.logger.info("Setting lights in each room to the requested scene.")
         for room_name in rooms:
             self.set_room_lights(room_name)
         return True
@@ -42,12 +60,12 @@ class SetScene(action.BaseAction):
                 lights = room["lights"]
                 for light in lights:
                     try:
-                        self.lights[light].set_color(self.scene["color"], 500)
+                        self.lights[light].set_color(self.color, 500)
                         self.lights[light].set_brightness(self.brightness, 500)
                     except WorkflowException as err:
-                        self.logger.warning(f"Timeout setting light {light} in {room_name}: {err}")
+                        self.logger.warning(f"Timeout setting light {light} in {room_name}. Retrying. msg: {err}")
                         try:
-                            self.lights[light].set_color(self.scene["color"], 500)
+                            self.lights[light].set_color(self.color, 500)
                             self.lights[light].set_brightness(self.brightness, 500)
                         except Exception as err:
                             self.logger.warning(f"Failed to set light {light} in {room_name}: {err}")
