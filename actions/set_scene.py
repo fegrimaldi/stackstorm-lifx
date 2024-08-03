@@ -21,11 +21,13 @@ from lifxlan import WorkflowException
 class SetScene(action.BaseAction):
     def run(self, **paramaters):
         rooms = paramaters.get("rooms", [])
-        self.color1 = paramaters.get("color", "daylight")
-        self.brightness1 = paramaters.get("brightness", "full")
-        # print(self.color1, self.brightness1)
+        self.color = paramaters.get("color", "daylight")
+        self.brightness = paramaters.get("brightness", "full")
 
-
+        if self.brightness < 0 or self.brightness > 100:
+            raise ValueError("Brightness must be between 0 and 100%")
+        self.brightness = int((self.brightness / 100) * 65535)
+    
         for room_name in rooms:
             self.set_room_lights(room_name)
         return True
@@ -36,13 +38,13 @@ class SetScene(action.BaseAction):
                 lights = room["lights"]
                 for light in lights:
                     try:
-                        self.lights[light].set_color(self.color1, 500)
-                        self.lights[light].set_brightness(self.brightness1, 500)
+                        self.lights[light].set_color(self.color, 500)
+                        self.lights[light].set_brightness(self.brightness, 500)
                     except WorkflowException as err:
                         self.logger.warning(f"Timeout setting light {light} in {room_name}: {err}")
                         try:
-                            self.lights[light].set_color(self.color1, 500)
-                            self.lights[light].set_brightness(self.brightness1, 500)
+                            self.lights[light].set_color(self.color, 500)
+                            self.lights[light].set_brightness(self.brightness, 500)
                         except Exception as err:
                             self.logger.warning(f"Failed to set light {light} in {room_name}: {err}")
                             pass

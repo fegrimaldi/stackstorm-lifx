@@ -17,14 +17,6 @@
 from st2common.runners.base_action import Action
 from lifxlan import Light
 
-class Brightness:
-    """Defines brightness levels for LIFX lights."""
-    def __init__(self):
-        self.third = 21627
-        self.half = 32767
-        self.two_thirds = 43254
-        self.full = 65535
-
 class Colors:
     """Defines preset colors for LIFX lights."""
     def __init__(self):
@@ -44,8 +36,6 @@ class BaseAction(Action):
             self.lights[light['name']] = Light(light['mac'], light['ip'])
         self.logger.info('LIFX lights initialized')
 
-        self.color = Colors()
-        self.brightness = Brightness()
     
 
   

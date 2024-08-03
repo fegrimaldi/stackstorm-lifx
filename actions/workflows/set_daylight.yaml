@@ -5,7 +5,7 @@ description: Sets house to the evening light scene.
 input:
   - rooms: ["media_room", "office"]
   - color: "(0, 0, 65535, 6500)"
-  - brightness: 65535
+  - brightness: 100
 
 output:
   - result: <% ctx().result %>
