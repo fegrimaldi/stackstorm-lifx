@@ -1,6 +1,7 @@
 ---
-name: "set_evening"
-runner_type: "python-script"
-description: "Sets the media room and office to the evening scene."
+name: set_evening
+pack: lifx
+description: Sets the scene to evening. 
+runner_type: orquesta
+entry_point: workflows/set_evening.yaml
 enabled: true
-entry_point: "set_evening.py"

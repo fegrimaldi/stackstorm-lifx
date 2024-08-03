@@ -16,14 +16,18 @@
 
 import sys
 from lib import action
+from lifxlan import WorkflowException
 
-class SetEveningAction(action.BaseAction):
-    def run(self):
-        rooms = ["media_room", "office"]
+class SetScene(action.BaseAction):
+    def run(self, **paramaters):
+        rooms = paramaters.get("rooms", [])
+        self.color1 = paramaters.get("color", "daylight")
+        self.brightness1 = paramaters.get("brightness", "full")
+        # print(self.color1, self.brightness1)
+
 
         for room_name in rooms:
             self.set_room_lights(room_name)
-
         return True
 
     def set_room_lights(self, room_name):
@@ -32,14 +36,21 @@ class SetEveningAction(action.BaseAction):
                 lights = room["lights"]
                 for light in lights:
                     try:
-                        self.lights[light].set_color(self.color.evening, 500)
-                        self.lights[light].set_brightness(self.brightness.two_thirds, 1000)
+                        self.lights[light].set_color(self.color1, 500)
+                        self.lights[light].set_brightness(self.brightness1, 500)
+                    except WorkflowException as err:
+                        self.logger.warning(f"Timeout setting light {light} in {room_name}: {err}")
+                        try:
+                            self.lights[light].set_color(self.color1, 500)
+                            self.lights[light].set_brightness(self.brightness1, 500)
+                        except Exception as err:
+                            self.logger.warning(f"Failed to set light {light} in {room_name}: {err}")
+                            pass
                     except Exception as err:
                         self.logger.error(f"Failed to set light {light} in {room_name}: {err}")
                         sys.exit(1)
-                self.logger.info(f"Successfully set lights in the {room_name} to the evening scene.")
+                self.logger.info(f"Successfully set lights in the {room_name} to the daylight scene.")
                 break
         else:
             self.logger.warning(f"Room {room_name} not found.")
-
 

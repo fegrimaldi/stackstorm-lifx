@@ -1,0 +1,25 @@
+version: 1.0
+
+description: Sets house to the evening light scene.
+
+input:
+  - rooms: ["media_room", "office"]
+  - color: "(0, 0, 65535, 6500)"
+  - brightness: 65535
+
+output:
+  - result: <% ctx().result %>
+
+tasks:
+  task1:
+    action: lifx.set_scene
+    input:
+      rooms: <% ctx().rooms %>
+      color: <% ctx().color %>
+      brightness: <% ctx().brightness %>
+    next:
+      - when: <% succeeded() %>
+        publish: 
+          - result: <% result().result %>
+
+     

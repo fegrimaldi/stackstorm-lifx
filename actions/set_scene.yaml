@@ -1,0 +1,22 @@
+---
+name: "set_scene"
+runner_type: "python-script"
+description: "Sets a scene in the defined rooms."
+enabled: true
+entry_point: "set_scene.py"
+parameters:
+  rooms:
+    description: "List of rooms in which to set a given scene."
+    type: "array"
+    required: true
+    position: 0
+  color:
+    description: "HSBK Color Value."
+    type: "string"
+    required: true
+    position: 1
+  brightness:
+    description: "Light brightness."
+    type: "number"
+    required: true
+    position: 2
