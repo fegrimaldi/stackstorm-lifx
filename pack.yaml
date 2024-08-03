@@ -1,7 +1,7 @@
 ---
 name : lifx
-description : Automate LifX lights
-version: 0.7.0
+description : Automate LifX lights with StackStorm
+version: 0.9.0
 author : Fabricio Grimaldi
 email : 34732205+fegrimaldi@users.noreply.github.com
 python_versions:
