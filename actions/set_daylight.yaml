@@ -1,6 +1,7 @@
 ---
-name: "set_daylight"
-runner_type: "python-script"
-description: "Sets the home to the daylight scene."
+name: set_daylight
+pack: lifx
+description: Sets the scene to daylight. 
+runner_type: orquesta
+entry_point: workflows/set_daylight.yaml
 enabled: true
-entry_point: "set_daylight.py"

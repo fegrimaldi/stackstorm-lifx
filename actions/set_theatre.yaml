@@ -1,6 +1,7 @@
 ---
-name: "set_theatre"
-runner_type: "python-script"
-description: "Sets the media room to the theatre scene."
+name: set_theatre
+pack: lifx
+description: Sets the scene to theatre. 
+runner_type: orquesta
+entry_point: workflows/set_theatre.yaml
 enabled: true
-entry_point: "set_theatre.py"
