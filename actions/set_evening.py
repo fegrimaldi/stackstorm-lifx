@@ -1,26 +1,4 @@
-"""Provides an action to set evening ambiance in a media room by adjusting lights.
-
-This module defines a class `SetEveningAction` which inherits from `action.BaseAction`. 
-It enables users to set the evening ambiance in a media room by adjusting the color and 
-brightness of the lights.
-
-Example:
-    from lib import action
-
-    class SetEveningAction(action.BaseAction):
-        def run(self):
-            self.lights.media_room.set_color(self.color.evening, 2000)
-            self.lights.media_room.set_brightness(self.brightness.half, 2000)
-            return None
-
-Attributes:
-    None
-
-Methods:
-    run(): Executes the action to set evening ambiance by adjusting the color and brightness of the lights.
-
-"""
-
+import sys
 from lib import action
 
 class SetEveningAction(action.BaseAction):
@@ -30,16 +8,32 @@ class SetEveningAction(action.BaseAction):
         Returns:
             None: The function does not return any value.
         """
-        self.lights.media_room.set_color(self.color.evening, 2000)
-        self.lights.media_room.set_brightness(self.brightness.two_thirds, 2000)
 
-        self.lights.office_one.set_color(self.color.evening, 2000)
-        self.lights.office_one.set_brightness(self.brightness.two_thirds, 2000)
+        # * Set lights in the media room to evening scene.
+        for room in self.rooms:
+            if room["name"] == "media_room":
+                lights = room["lights"]
+        for light in lights:
+            try:
+                self.lights[light].set_color(self.color.evening, 2000)
+                self.lights[light].set_brightness(self.brightness.two_thirds, 2000)
+            except Exception as err:
+                self.logger.error(f"msg: {err}")
+                sys.exit(1)
+        self.logger.info("Successfully set lights in the media room to the evening scene.")
 
-        self.lights.office_two.set_color(self.color.evening, 2000)
-        self.lights.office_two.set_brightness(self.brightness.two_thirds, 2000)
-
-        self.lights.office_three.set_color(self.color.evening, 2000)
-        self.lights.office_three.set_brightness(self.brightness.two_thirds, 2000)                        
-        return None
+        # * Set lights in the office to evening scene.
+        for room in self.rooms:
+            if room["name"] == "office":
+                lights = room["lights"]
+        for light in lights:
+            try:
+                self.lights[light].set_color(self.color.evening, 2000)
+                self.lights[light].set_brightness(self.brightness.two_thirds, 2000) 
+            except Exception as err:
+                self.logger.error(f"msg: {err}")
+                sys.exit(1)
+        self.logger.info("Successfully set lights in the office to the evening scene.")  
+                     
+        return True
 

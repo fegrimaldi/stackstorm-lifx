@@ -1,6 +1,6 @@
 ---
 name: "set_evening"
 runner_type: "python-script"
-description: "Sets the media room to evening mode."
+description: "Sets the media room to the evening scene."
 enabled: true
 entry_point: "set_evening.py"

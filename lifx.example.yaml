@@ -1,0 +1,25 @@
+---
+lights:
+  - name: "media_room"
+    mac: "d0:74:d5:42:20:7b"
+    ip: "192.168.1.10"
+  - name: "bedroom"
+    mac: "d0:73:a7:35:a2:db"
+    ip: "192.168.1.11"
+rooms:
+  - name: "media_room"
+    lights:
+      - "media_room"
+  - name: "bedroom"
+    lights:
+      - "bedroom"
+  - name: "office"
+    lights:
+      - "office_one"
+      - "office_two"
+      - "office_three"
+  - name: "living_room"
+    lights:
+      - "living_room_left"
+      - "living_room_right"
+

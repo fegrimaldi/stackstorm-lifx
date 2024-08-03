@@ -1,17 +1,37 @@
----
-  latitude:
-    description: "Latitude of the location"
-    type: "number"
-    secret: false
+lights:
+  description: "An array of light in the home."
+  type: "array"
+  required: true
+  items:
+    type: "object"
     required: true
-  longitude:
-    description: "Longitude of the location"
-    type: "number"
-    secret: false
+    properties:
+      name:
+        type: "string"
+        required: true
+      mac:
+        type: "string"
+        pattern: "^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$"
+        required: true
+      ip:
+        type: "string"
+        pattern: "^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$"
+        required: true
+rooms:
+  description: "An array of rooms with their respective lights in the home."
+  type: "array"
+  required: true
+  items:
+    type: "object"
     required: true
-  timezone:
-    description: "Time zone to display in results"
-    type: "string"
-    secret: false
-    required: true
-    default: "GMT+0"
+    properties:
+      name:
+        type: "string"
+        required: true
+      lights:
+        type: "array"
+        required: true
+        items:
+          type: "string"
+          required: true
+
