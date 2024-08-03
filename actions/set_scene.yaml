@@ -10,13 +10,8 @@ parameters:
     type: "array"
     required: true
     position: 0
-  color:
-    description: "HSBK Color Value."
+  scene:
+    description: "Scene to set."
     type: "string"
     required: true
     position: 1
-  brightness:
-    description: "Light brightness."
-    type: "number"
-    required: true
-    position: 2

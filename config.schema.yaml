@@ -34,4 +34,20 @@ rooms:
         items:
           type: "string"
           required: true
-
+scenes:
+  description: "An object defining various lighting scenes."
+  type: "object"
+  required: true
+  additionalProperties:
+    type: "object"
+    properties:
+      color:
+        type: "string"
+        description: "HSBK color setting for the scene."
+        required: true
+      brightness:
+        type: "integer"
+        description: "Brightness percentage (0-100) for the scene."
+        minimum: 0
+        maximum: 100
+        required: true

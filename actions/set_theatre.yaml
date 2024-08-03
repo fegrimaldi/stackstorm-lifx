@@ -1,7 +1,7 @@
 ---
 name: set_theatre
 pack: lifx
-description: Sets the scene to theatre. 
+description: Sets the scene to the theatre scene. 
 runner_type: orquesta
 entry_point: workflows/set_theatre.yaml
 enabled: true
