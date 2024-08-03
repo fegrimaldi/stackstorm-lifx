@@ -46,8 +46,8 @@ class SiteSurvey(Action):
         site_survey_dicts = [device.to_dict() for device in site_survey]
 
 
-        # Serialize the list of dictionaries to JSON
-        json_output = json.dumps(site_survey_dicts, indent=4)
+        # Serialize and minimize the list of dictionaries to JSON
+        json_output = json.dumps(site_survey_dicts, separators=(',', ':'))
 
         return json_output
 
