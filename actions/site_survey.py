@@ -47,9 +47,9 @@ class SiteSurvey(Action):
 
 
         # Serialize and minimize the list of dictionaries to JSON
-        json_output = json.dumps(site_survey_dicts, separators=(',', ':'))
+        #json_output = json.dumps(site_survey_dicts, separators=(',', ':'))
 
-        return json_output
+        return site_survey_dicts
 
 
 
