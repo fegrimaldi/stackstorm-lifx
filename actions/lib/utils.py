@@ -19,7 +19,7 @@ class Device:
         try:
             self.mac_addr = light.get_mac_addr()
             self.ip_addr = light.get_ip_addr()
-            self.color = light.get_color()
+            self.color = str(light.get_color())
             self.power_level = light.power_level
             self.label = light.get_label()
             self.product_name = light.get_product_name()
