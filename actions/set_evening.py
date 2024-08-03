@@ -16,6 +16,7 @@
 
 import sys
 from lib import action
+
 class SetEveningAction(action.BaseAction):
     def run(self):
         rooms = ["media_room", "office"]
@@ -31,8 +32,8 @@ class SetEveningAction(action.BaseAction):
                 lights = room["lights"]
                 for light in lights:
                     try:
-                        self.lights[light].set_color(self.color.evening, 2000)
-                        self.lights[light].set_brightness(self.brightness.two_thirds, 2000)
+                        self.lights[light].set_color(self.color.evening, 500)
+                        self.lights[light].set_brightness(self.brightness.two_thirds, 1000)
                     except Exception as err:
                         self.logger.error(f"Failed to set light {light} in {room_name}: {err}")
                         sys.exit(1)

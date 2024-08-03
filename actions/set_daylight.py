@@ -16,6 +16,8 @@
 
 import sys
 from lib import action
+from lifxlan import WorkflowException
+
 
 class SetDaylightAction(action.BaseAction):
     def run(self):
@@ -36,8 +38,12 @@ class SetDaylightAction(action.BaseAction):
                 lights = room["lights"]
                 for light in lights:
                     try:
-                        self.lights[light].set_color(self.color.daylight, 2000)
-                        self.lights[light].set_brightness(self.brightness.full, 2000)
+                        self.lights[light].set_color(self.color.daylight, 500)
+                        self.lights[light].set_brightness(self.brightness.full, 1000)
+                    except WorkflowException as err:
+                        self.logger.warning(f"Timeout setting light {light} in {room_name}: {err}")
+                        self.lights[light].set_color(self.color.daylight, 500)
+                        self.lights[light].set_brightness(self.brightness.full, 1000)
                     except Exception as err:
                         self.logger.error(f"Failed to set light {light} in {room_name}: {err}")
                         sys.exit(1)

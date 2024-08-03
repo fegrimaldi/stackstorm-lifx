@@ -32,8 +32,8 @@ class SetTheatreAction(action.BaseAction):
                 lights = room["lights"]
                 for light in lights:
                     try:
-                        self.lights[light].set_color(self.color.theatre, 2000)
-                        self.lights[light].set_brightness(self.brightness.third, 2000)
+                        self.lights[light].set_color(self.color.theatre, 500)
+                        self.lights[light].set_brightness(self.brightness.third, 1000)
                     except Exception as err:
                         self.logger.error(f"Failed to set light {light} in {room_name}: {err}")
                         sys.exit(1)

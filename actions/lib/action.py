@@ -28,8 +28,8 @@ class Brightness:
 class Colors:
     """Defines preset colors for LIFX lights."""
     def __init__(self):
-        self.theatre = (0, 65535, 43973, 3500)
-        self.evening = (5461, 48495, 65535, 3500)
+        self.theatre = (0, 65535, 43973, 2500)
+        self.evening = (5461, 48495, 65535, 3500) #(35, 65535, 32767, 2500)
         self.daylight = (0, 0, 65535, 5600)
 
 class BaseAction(Action):
