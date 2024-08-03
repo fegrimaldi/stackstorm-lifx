@@ -1,0 +1,5 @@
+name: "site_survey"
+runner_type: "python-script"
+description: "Discovers and returns all LifX lights on the LAN (Home)."
+enabled: true
+entry_point: "site_survey.py"
