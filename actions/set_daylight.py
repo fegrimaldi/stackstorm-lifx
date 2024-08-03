@@ -25,44 +25,24 @@ class SetDaylightAction(action.BaseAction):
             None: The function does not return any value.
         """
 
-        # * Set lights in the media room to the daylight scene.
-        for room in self.rooms:
-            if room["name"] == "media_room":
-                lights = room["lights"]
-        for light in lights:
-            try:
-                self.lights[light].set_color(self.color.daylight, 2000)
-                self.lights[light].set_brightness(self.brightness.full, 2000)
-            except Exception as err:
-                self.logger.error(f"msg: {err}")
-                sys.exit(1)
-        self.logger.info("Successfully set lights in the media room to the daylight scene.")
+        rooms = ["living_room", "office", "media_room"]
 
-        # * Set lights in the office to daylight scene
+        for room_name in rooms:
+            self.set_room_lights(room_name)
+
+    def set_room_lights(self, room_name):
         for room in self.rooms:
-            if room["name"] == "office":
+            if room["name"] == room_name:
                 lights = room["lights"]
-        for light in lights:
-            try:
-                self.lights[light].set_color(self.color.daylight, 2000)
-                self.lights[light].set_brightness(self.brightness.full, 2000) 
-            except Exception as err:
-                self.logger.error(f"msg: {err}")
-                sys.exit(1)
-        self.logger.info("Successfully set lights in the office to the daylight scene.")
-        
-        # * Set lights in the living room to daylight scene
-        for room in self.rooms:
-            if room["name"] == "living_room":
-                lights = room["lights"]
-        for light in lights:
-            try:
-                self.lights[light].set_color(self.color.daylight, 2000)
-                self.lights[light].set_brightness(self.brightness.full, 2000) 
-            except Exception as err:
-                self.logger.error(f"msg: {err}")
-                sys.exit(1)
-        self.logger.info("Successfully set lights in the living room to the daylight scene.")  
-                     
-        return True
+                for light in lights:
+                    try:
+                        self.lights[light].set_color(self.color.daylight, 2000)
+                        self.lights[light].set_brightness(self.brightness.full, 2000)
+                    except Exception as err:
+                        self.logger.error(f"Failed to set light {light} in {room_name}: {err}")
+                        sys.exit(1)
+                self.logger.info(f"Successfully set lights in the {room_name} to the daylight scene.")
+                break
+        else:
+            self.logger.warning(f"Room {room_name} not found.")
 
