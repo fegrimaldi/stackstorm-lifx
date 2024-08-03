@@ -21,11 +21,16 @@ from st2common.runners.base_action import Action
 
 
 class SiteSurvey(Action):
-    def run(self):
+    def run(self, **parameters):
         site_survey = []
-
+        number_of_lights = parameters.get("number_of_lights", None)
+        if number_of_lights is not None:
+            lifxlan = LifxLAN(number_of_lights)
+        else:
+            lifxlan = LifxLAN()
+   
         try:
-            lights = LifxLAN().get_lights()       
+            lights = lifxlan.get_lights()       
         except Exception as e:
             self.logger.error(f"Error during LIFX LAN survey: {e}")
             sys.exit(1)

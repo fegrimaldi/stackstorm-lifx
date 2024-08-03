@@ -3,3 +3,10 @@ runner_type: "python-script"
 description: "Discovers and returns all LifX lights on the LAN (Home)."
 enabled: true
 entry_point: "site_survey.py"
+parameters:
+  number_of_lights:
+    description: "Discovery will go faster if you know the number of lights, though it is not necessary."
+    type: integer
+    required: false
+    position: 1
+    default: null
