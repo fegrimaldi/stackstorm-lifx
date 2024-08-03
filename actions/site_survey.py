@@ -14,9 +14,7 @@
    Copyright 2024 Silver Wolf Technoglogy
 """
 
-import json
 import sys
-# from lib import action
 from lifxlan import LifxLAN
 from lib.utils import Device
 from st2common.runners.base_action import Action
@@ -40,14 +38,9 @@ class SiteSurvey(Action):
         for light in lights:
             device = Device(light)
             site_survey.append(device)
-            # self.logger.info(f"Added light: {device.to_dict()}")
 
         # Convert the list of Device objects to a list of dictionaries
         site_survey_dicts = [device.to_dict() for device in site_survey]
-
-
-        # Serialize and minimize the list of dictionaries to JSON
-        #json_output = json.dumps(site_survey_dicts, separators=(',', ':'))
 
         return site_survey_dicts
 
