@@ -22,7 +22,7 @@ tasks:
     action: mercury.save_data_to_disk
     input:
       data: <% ctx().survey_json %>
-      file_path: "/opt/gluware/public/lifx-survey.json"
+      file_path: "/opt/silverwolf/public/lifx-survey.json"
     next:
       - when: <% succeeded() %>
         publish: 
