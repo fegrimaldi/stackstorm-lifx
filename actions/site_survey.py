@@ -15,7 +15,7 @@
 """
 
 import sys
-from lifxlan import LifxLAN
+from lifxlan import LifxLAN, WorkflowException
 from lib.utils import Device
 from st2common.runners.base_action import Action
 
@@ -30,13 +30,22 @@ class SiteSurvey(Action):
             lifxlan = LifxLAN()
    
         try:
-            lights = lifxlan.get_lights()       
+            lights = lifxlan.get_lights() 
+        except WorkflowException:
+            self.logger.warning(f"Timeout waiting for response from a device. Retrying scan.")
+            try:
+                lights = lifxlan.get_lights() 
+            except Exception as e:
+                self.logger.error(f"Error during LIFX LAN survey: {e}.")
+                sys.exit(1)      
         except Exception as e:
             self.logger.error(f"Error during LIFX LAN survey: {e}")
             sys.exit(1)
         if len(lights) == 0:
-            self.logger.error("No lights found on the network.")
-            sys.exit(1)
+            self.logger.warning("No lights found on the network. Common on st2-docker containers.")
+            msg = {"warning": "No lights found on the network. Common on st2-docker containers."}
+            site_survey.append(msg)
+            return site_survey
         else:
             self.logger.info(f"Found {len(lights)} lights on the network.")
 
