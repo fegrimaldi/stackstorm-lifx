@@ -16,7 +16,7 @@ parameters:
     required: false
     position: 1
   color:
-    description: "HSBK Color Value, i.e. (0, 0, 65535, 4000) or (hue, saturation, brightnees, temperature (K))." 
+    description: "HSBK Color Value, i.e. [0, 0, 65535, 4000] or [hue, saturation, brightness, temperature (K)]." 
     type: "array"
     items:
       type: "integer"
@@ -32,7 +32,7 @@ parameters:
     maximum: 100
     position: 3
   power:
-    description: "Light power state on/off."
+    description: "Light power state True (on)/False (off)."
     type: "boolean"
     required: false
     default: true

@@ -10,7 +10,7 @@ output:
   - result: <% ctx().result %>
 
 tasks:
-  task1:
+  set_scene:
     action: lifx.set_scene
     input:
       rooms: <% ctx().rooms %>

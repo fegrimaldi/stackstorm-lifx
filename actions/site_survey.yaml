@@ -5,7 +5,7 @@ enabled: true
 entry_point: "site_survey.py"
 parameters:
   number_of_lights:
-    description: "Discovery will go faster if you know the number of lights, though it is not necessary."
+    description: "Discovery will go faster if you know the number of lights, though providing this parameter is not necessary."
     type: integer
     required: false
     position: 1
