@@ -18,22 +18,26 @@ class Device:
     def __init__(self, light):
         try:
             self.label = light.get_label()
+            self.location = light.get_location()
+            self.group = light.get_group()
+            self.product_name = light.get_product_name()
             self.mac_addr = light.get_mac_addr()
             self.ip_addr = light.get_ip_addr()
             self.color = str(light.get_color())
             self.power_level = light.power_level          
-            self.product_name = light.get_product_name()
-            self.product_features = light.get_product_features()
+            # self.product_features = light.get_product_features()
         except AttributeError as e:
             print(f"Error initializing Device: {e}")
 
     def to_dict(self):
         return {
             'label': self.label,
+            'location': self.location,
+            'group': self.group,
+            'product_name': self.product_name,
             'mac_addr': self.mac_addr,
             'ip_addr': self.ip_addr,
             'color': self.color,
             'power_level': self.power_level,
-            'product_name': self.product_name,
-            'product_features': self.product_features
+            # 'product_features': self.git rproduct_features
         }
