@@ -31,3 +31,9 @@ parameters:
     minimum: 0
     maximum: 100
     position: 3
+  power:
+    description: "Light power state on/off."
+    type: "boolean"
+    required: false
+    default: true
+    position: 4

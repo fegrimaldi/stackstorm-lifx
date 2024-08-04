@@ -22,6 +22,7 @@ class SetScene(action.BaseAction):
     def run(self, **paramaters):
         rooms = paramaters.get("rooms", [])
         scene = paramaters.get("scene", None)
+        self.power = paramaters.get("power", True)
         self.scene = self.scenes.get(scene, None)
 
 
@@ -65,12 +66,12 @@ class SetScene(action.BaseAction):
                 lights = room["lights"]
                 for light in lights:
                     try:
-                        self.lights[light].set_power("on")
+                        self.lights[light].set_power(self.power)
                         self.lights[light].set_color(self.color, 1000) 
                     except WorkflowException as err:
                         self.logger.warning(f"Timeout setting light {light} in {room_name}. Retrying. msg: {err}")
                         try:
-                            self.lights[light].set_power("on")
+                            self.lights[light].set_power(self.power)
                             self.lights[light].set_color(self.color, 1000)
                         except Exception as err:
                             self.logger.warning(f"Failed to set light {light} in {room_name}: {err}")

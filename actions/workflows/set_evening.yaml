@@ -5,6 +5,7 @@ description: Sets house to the daylight light scene.
 input:
   - rooms: ["media_room", "office", "bedroom", "living_room"]
   - scene: "evening"
+  - power: true
 output:
   - result: <% ctx().result %>
 
@@ -14,6 +15,7 @@ tasks:
     input:
       rooms: <% ctx().rooms %>
       scene: <% ctx().scene %>
+      power: <% ctx().power %>
     next:
       - when: <% succeeded() %>
         publish: 
