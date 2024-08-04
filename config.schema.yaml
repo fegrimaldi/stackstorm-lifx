@@ -42,9 +42,12 @@ scenes:
     type: "object"
     properties:
       color:
-        type: "string"
+        type: "array"
         description: "HSBK color setting for the scene."
         required: true
+        items:
+          type: "integer"
+          required: true
       brightness:
         type: "integer"
         description: "Brightness percentage (0-100) for the scene."

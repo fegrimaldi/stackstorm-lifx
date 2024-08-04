@@ -55,18 +55,23 @@ class SetScene(action.BaseAction):
     # Sets the lights in a given room to the desired scene settings.
     # If a timeout to the response occurs, we try to set the light scene one more time. 
     def set_room_lights(self, room_name):
+
+        # Set the brightness of the color (3rd index) based on the brightness level entered.
+        self.color[2] = self.brightness
+
+        room_name = room_name.lower()
         for room in self.rooms:
             if room["name"] == room_name:
                 lights = room["lights"]
                 for light in lights:
                     try:
-                        self.lights[light].set_color(self.color, 500)
-                        self.lights[light].set_brightness(self.brightness, 500)
+                        self.lights[light].set_power("on")
+                        self.lights[light].set_color(self.color, 1000) 
                     except WorkflowException as err:
                         self.logger.warning(f"Timeout setting light {light} in {room_name}. Retrying. msg: {err}")
                         try:
-                            self.lights[light].set_color(self.color, 500)
-                            self.lights[light].set_brightness(self.brightness, 500)
+                            self.lights[light].set_power("on")
+                            self.lights[light].set_color(self.color, 1000)
                         except Exception as err:
                             self.logger.warning(f"Failed to set light {light} in {room_name}: {err}")
                             pass

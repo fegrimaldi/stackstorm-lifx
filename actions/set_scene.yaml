@@ -17,7 +17,11 @@ parameters:
     position: 1
   color:
     description: "HSBK Color Value, i.e. (0, 0, 65535, 4000) or (hue, saturation, brightnees, temperature (K))." 
-    type: "string"
+    type: "array"
+    items:
+      type: "integer"
+    minItems: 4
+    maxItems: 4
     required: false
     position: 2
   brightness:
