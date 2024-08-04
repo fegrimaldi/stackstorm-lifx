@@ -1,0 +1,43 @@
+version: 1.0
+
+description: Runs a LifX device site survey, then emails the resulting JSON file as an attachment.
+
+input:
+  - number_of_lights: integer
+
+output:
+  - result: <% ctx().result %>
+
+tasks:
+  run_survey:
+    action: lifx.site_survey
+    input:
+      number_of_lights: <% ctx().number_of_lights %>
+    next:
+      - when: <% succeeded() %>
+        publish: 
+          - survey_json: <% result().result or [] %>
+        do: save_attachment 
+  save_attachment:
+    action: mercury.save_data_to_disk
+    input:
+      data: <% ctx().survey_json %>
+      file_path: "/opt/gluware/public/lifx-survey.json"
+    next:
+      - when: <% succeeded() %>
+        publish: 
+         - attachment_path: <% result().result %>
+        do: email_survey
+  email_survey:
+    action: mercury.send_email
+    input:
+      to: ["feg@silverwolftechnology.com"]
+      cc: []
+      subject: "LifX Site Survey"
+      body: "<h3>Site Survey</h3><p>Attached is a current LifX site survey.</p>"
+      attachments: ["<% ctx().attachment_path %>"]
+      mime_type: "HTML"
+    next:
+      - when: <% succeeded() %>
+        publish: 
+         - result: "success"       

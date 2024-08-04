@@ -1,0 +1,13 @@
+---
+name: email_site_survey
+pack: lifx
+description: Runs a LifX device site survey, then emails the resulting JSON file as an attachment. 
+runner_type: orquesta
+entry_point: workflows/email_site_survey.yaml
+enabled: true
+parameters:
+  number_of_lights:
+    required: false
+    type: string
+    description: The number of LifX lights.
+    position: 0
