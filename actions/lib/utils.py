@@ -25,7 +25,7 @@ class Device:
             self.ip_addr = light.get_ip_addr()
             self.color = str(light.get_color())
             self.power_level = light.power_level          
-            # self.product_features = light.get_product_features()
+            self.product_features = light.get_product_features()
         except AttributeError as e:
             print(f"Error initializing Device: {e}")
 
@@ -39,5 +39,5 @@ class Device:
             'ip_addr': self.ip_addr,
             'color': self.color,
             'power_level': self.power_level,
-            # 'product_features': self.git rproduct_features
+            'product_features': self.product_features
         }
