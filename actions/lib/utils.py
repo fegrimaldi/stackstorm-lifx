@@ -22,7 +22,7 @@ class Device:
             self.group = light.get_group()
             self.mac_addr = light.get_mac_addr()
             self.ip_addr = light.get_ip_addr()
-            self.color = str(light.get_color())
+            self.color = light.get_color()
             self.power_level = light.power_level  
             self.product_name = light.get_product_name()        
             self.product_features = light.get_product_features()
